@@ -1,1 +1,1 @@
-# next-class
+# NextClass for Guelph
