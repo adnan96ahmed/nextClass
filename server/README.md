@@ -2,6 +2,14 @@
 
 ## Design
 
+### Microservices
+
+**Cell**  
+Scraper to load WebAdvisor data, demangle it, and upload it into a database.
+
+**Fujita**  
+Orchestrator to send scrape requests to the scraper (Cell).
+
 ## Resources
 
 ### OpenCL
