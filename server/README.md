@@ -25,3 +25,10 @@ Orchestrator to send scrape requests to the scraper (Cell).
 * https://www.quora.com/What-is-the-fastest-algorithm-to-enumerate-all-maximal-independent-sets-of-a-graph
 * https://en.wikipedia.org/wiki/Clique_problem#Finding_maximum_cliques_in_arbitrary_graphs
 * The Maximum Clique Problem (Immanuel M. Bomze)
+
+## Notes
+
+### Postgres
+
+**User vs Role:** A role can be a user or a group. CREATE USER is an alias for CREATE ROLE.
+**Public Schema:** Accessible to all users.
