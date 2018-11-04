@@ -30,5 +30,5 @@ Orchestrator to send scrape requests to the scraper (Cell).
 
 ### Postgres
 
-**User vs Role:** A role can be a user or a group. CREATE USER is an alias for CREATE ROLE.
+**User vs Role:** A role can be a user or a group. CREATE USER is an alias for CREATE ROLE.  
 **Public Schema:** Accessible to all users.
