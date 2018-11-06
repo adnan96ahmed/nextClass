@@ -1,4 +1,4 @@
--- From scratch, current DB should be 
+-- Schema creation from scratch. current_database() should be 'nextclass'.
 CREATE USER super;
 CREATE SCHEMA main;
 GRANT ALL PRIVILEGES ON DATABASE nextclass TO super;
