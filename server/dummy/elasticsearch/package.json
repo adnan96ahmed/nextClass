@@ -1,0 +1,19 @@
+{
+  "name": "es-dummy",
+  "version": "1.0.0",
+  "description": "A dummy Elasticsearch API for building out the autocomplete UI.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/xairos/next-class"
+  },
+  "author": "Ben Rottke",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "fuse.js": "^3.3.0"
+  }
+}

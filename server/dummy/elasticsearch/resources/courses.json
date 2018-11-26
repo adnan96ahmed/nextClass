@@ -1,0 +1,134 @@
+[
+  {
+    "id": 1,
+    "title": "Intro to Computer Applications",
+    "dept": "CIS",
+    "code": "1000"
+  },
+  {
+    "id": 2,
+    "title": "Introduction to Computing",
+    "dept": "CIS",
+    "code": "1200"
+  },
+  {
+    "id": 3,
+    "title": "Introduction to Programming",
+    "dept": "CIS",
+    "code": "1500"
+  },
+  {
+    "id": 4,
+    "title": "Discrete Structures in Comp I",
+    "dept": "CIS",
+    "code": "1910"
+  },
+  {
+    "id": 5,
+    "title": "Introduction to Computing",
+    "dept": "CIS",
+    "code": "1200"
+  },
+  {
+    "id": 6,
+    "title": "Software Design II",
+    "dept": "CIS",
+    "code": "2250"
+  },
+  {
+    "id": 7,
+    "title": "Intermediate Programming",
+    "dept": "CIS",
+    "code": "2500"
+  },
+  {
+    "id": 8,
+    "title": "Software System Dvlmt & Intgrn",
+    "dept": "CIS",
+    "code": "2750"
+  },
+  {
+    "id": 9,
+    "title": "Operating Systems",
+    "dept": "CIS",
+    "code": "3110"
+  },
+  {
+    "id": 10,
+    "title": "Digital Systems I",
+    "dept": "CIS",
+    "code": "3120"
+  },
+  {
+    "id": 11,
+    "title": "Software for Legacy Systems",
+    "dept": "CIS",
+    "code": "3190"
+  },
+  {
+    "id": 12,
+    "title": "Analysis & Des. of Comp. Algo.",
+    "dept": "CIS",
+    "code": "3490"
+  },
+  {
+    "id": 13,
+    "title": "Intro to Intelligent Systems",
+    "dept": "CIS",
+    "code": "3700"
+  },
+  {
+    "id": 14,
+    "title": "Syst Analysis & Design in App",
+    "dept": "CIS",
+    "code": "3750"
+  },
+  {
+    "id": 15,
+    "title": "Software Engineering",
+    "dept": "CIS",
+    "code": "3760"
+  },
+  {
+    "id": 16,
+    "title": "Special Topics in Info. Sci.",
+    "dept": "CIS",
+    "code": "4450"
+  },
+  {
+    "id": 17,
+    "title": "Introduction to Cryptography",
+    "dept": "CIS",
+    "code": "4520"
+  },
+  {
+    "id": 18,
+    "title": "Compilers",
+    "dept": "CIS",
+    "code": "4650"
+  },
+  {
+    "id": 19,
+    "title": "Image Processing & Vision",
+    "dept": "CIS",
+    "code": "4720"
+  },
+  {
+    "id": 20,
+    "title": "Game Programming",
+    "dept": "CIS",
+    "code": "4820"
+  },
+  {
+    "id": 21,
+    "title": "Computer Science Project",
+    "dept": "CIS",
+    "code": "4900"
+  },
+  {
+    "id": 22,
+    "title": "Computer Science Thesis",
+    "dept": "CIS",
+    "code": "4910"
+  }
+]

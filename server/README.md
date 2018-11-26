@@ -2,6 +2,62 @@
 
 ## Design
 
+### Data Models
+
+Preliminary sample response to a schedule generation request:
+```
+{
+  "courses":[{
+    "id": 19,
+    "title": "Image Processing & Vision",
+    "dept": "CIS",
+    "code": "4720",
+    "sections": [
+      {
+        "ref": 1,
+        "meetings": [
+          {
+            // Bitmask encoded days of the week on which
+            // the meeting takes place:
+            //   Mon Wed Fri 
+            // = 1 + 4 + 16 = 21
+            "days": 21,
+            "type": "LECTURE",
+            "timeStart": 1430,
+            "timeEnd": 1600
+          },
+          {
+            // Thursday = 8
+            "days": 8,
+            "type": "LAB",
+            "timeStart": 800,
+            "timeEnd": 1600
+          }
+        ]
+      },
+      {
+        "ref": 2,
+        ...
+      }
+      ...
+    ]
+  },
+  {
+    ...
+  }
+  ...
+  ],
+  
+  // These are arrays of section reference codes
+  "schedules": [
+    [1, 2, 3, 4, 5],
+    [1, 9, 3, 4, 5],
+    [1, 6, 3, 4, 3],
+    ...
+    ]
+}
+```
+
 ### Microservices
 
 **Cell**  
