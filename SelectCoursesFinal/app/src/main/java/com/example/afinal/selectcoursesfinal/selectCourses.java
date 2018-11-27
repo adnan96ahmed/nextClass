@@ -143,11 +143,18 @@ public class selectCourses extends AppCompatActivity {
 /********************************************************************************************/
         //REMOVE THIS WHEN TESTING IS COMPLETE
         else if (parsedString[0].equals("Gg")){
-            for (int i = 0; i < MAXNUM; i++){
-                courses[counter] = ("CIS 000"+Integer.toString(i));
-                counter++;
-                displayText();
-            }
+            courses[counter] = ("CIS 2750");
+            counter++;
+            displayText();
+            courses[counter] = ("CIS 3110");
+            counter++;
+            displayText();
+            courses[counter] = ("CIS 3490");
+            counter++;
+            displayText();
+            courses[counter] = ("CIS 3760");
+            counter++;
+            displayText();
         }
 /********************************************************************************************/
         //Sends message if course info is invalid

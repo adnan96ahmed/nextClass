@@ -7,7 +7,19 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/courseLoad"
+        android:id="@+id/courseLoad3"
+        android:layout_width="66dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Mandatory"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseLoad2" />
+
+    <TextView
+        android:id="@+id/courseLoad2"
         android:layout_width="147dp"
         android:layout_height="36dp"
         android:layout_marginStart="8dp"
@@ -19,6 +31,30 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/courseLoad"
+        android:layout_width="83dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Course Code"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseLoad2" />
+
+v
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="137dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:max="7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/courseLoadNum"
         android:layout_width="52dp"
         android:layout_height="34dp"
@@ -27,19 +63,7 @@
         android:text="5"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/courseLoad"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="137dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:max="7"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/courseLoad2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
