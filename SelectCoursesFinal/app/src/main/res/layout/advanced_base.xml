@@ -7,40 +7,40 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/courseLoad3"
+        android:id="@+id/Mandatory"
         android:layout_width="66dp"
         android:layout_height="19dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Mandatory"
+        android:text="@string/Mandatory"
         android:textColor="#000000"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/courseLoad2" />
+        app:layout_constraintTop_toBottomOf="@+id/courseLoad" />
 
     <TextView
-        android:id="@+id/courseLoad2"
+        android:id="@+id/courseLoad"
         android:layout_width="147dp"
         android:layout_height="36dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Course Load:"
+        android:text="@string/CourseLoad"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/courseLoad"
+        android:id="@+id/courseCode"
         android:layout_width="83dp"
         android:layout_height="20dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Course Code"
+        android:text="@string/CourseCode"
         android:textColor="#000000"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/courseLoad2" />
+        app:layout_constraintTop_toBottomOf="@+id/courseLoad" />
 
     <SeekBar
         android:id="@+id/seekBar"
@@ -58,10 +58,10 @@
         android:layout_height="34dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="5"
+        android:text="@string/CourseLoadNum"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/courseLoad2"
+        app:layout_constraintStart_toEndOf="@+id/courseLoad"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText" />
 
@@ -76,7 +76,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/courseLoad">
+        app:layout_constraintTop_toBottomOf="@+id/courseCode">
 
         <TableLayout
             android:id="@+id/advancedLayout"
@@ -87,7 +87,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/courseLoad" />
+            app:layout_constraintTop_toBottomOf="@+id/courseCode" />
     </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
