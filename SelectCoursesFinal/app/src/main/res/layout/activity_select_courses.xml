@@ -6,14 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".selectCourses">
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/editText"
-        android:layout_width="308dp"
+        android:layout_width="0dp"
         android:layout_height="42dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:completionHint="Select a course"
+        android:completionThreshold="1"
         android:ems="10"
+        android:hint="Select a course"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,12 +26,12 @@
         android:id="@+id/addButton"
         android:layout_width="42dp"
         android:layout_height="42dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:text="@string/add"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editText"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ViewFlipper
