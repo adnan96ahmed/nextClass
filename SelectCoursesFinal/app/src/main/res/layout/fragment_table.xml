@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="*"
+    tools:context=".TableFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TableRow>
+        <TextView
+            android:text="Timeslot"
+            android:padding="3dp"/>
+        <TextView
+            android:text="Mon"
+            android:padding="3dp"/>
+        <TextView
+            android:text="Tue"
+            android:padding="3dp"/>
+        <TextView
+            android:text="Wed"
+            android:padding="3dp"/>
+        <TextView
+            android:text="Thur"
+            android:padding="3dp"/>
+        <TextView
+            android:text="Fri"
+            android:padding="3dp"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="08:00am"
+            android:padding="3dp"/>
+        <TextView
+            android:text=""
+            android:padding="3dp"/>
+        <TextView
+            android:text=""
+            android:padding="3dp"/>
+        <TextView
+            android:text=""
+            android:padding="3dp"/>
+        <TextView
+            android:text=""
+            android:padding="3dp"/>
+        <TextView
+            android:text=""
+            android:padding="3dp"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="08:30am"
+            android:padding="3dp"/>
+        <TextView
+            android:text=""
+            android:padding="3dp"/>
+        <TextView
+            android:text=""
+            android:padding="3dp"/>
+        <TextView
+            android:text=""
+            android:padding="3dp"/>
+        <TextView
+            android:text=""
+            android:padding="3dp"/>
+        <TextView
+            android:text=""
+            android:padding="3dp"/>
+    </TableRow>
+
+</TableLayout>

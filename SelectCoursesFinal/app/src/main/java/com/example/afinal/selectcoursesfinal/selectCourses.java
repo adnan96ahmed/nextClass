@@ -1,5 +1,6 @@
 package com.example.afinal.selectcoursesfinal;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -135,6 +136,7 @@ public class selectCourses extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 if (counter > 0){
+
                     JSONObject jsonBody = new JSONObject();
 
                     try {
@@ -147,6 +149,9 @@ public class selectCourses extends AppCompatActivity {
                     final String mRequestBody = jsonBody.toString();
 
                     makeRequest(queue, mRequestBody, "http://10.0.2.2:11770/W19/generate");
+
+                    //LINKING CODE GOES HERE
+                    startActivity(new Intent(selectCourses.this, ScheduleActivity.class));
                 }
                 else{   //Give warning if no course is added
                     Toast toast = Toast.makeText(getApplicationContext(),
