@@ -80,6 +80,9 @@ public class selectCourses extends AppCompatActivity {
         //Initialize string array
         courses = new String[MAXNUM];
 
+        // Instantiate the RequestQueue.
+        final RequestQueue queue = Volley.newRequestQueue(this);
+
         //Initialize boolean array
         mandatory = new boolean[MAXNUM];
         for (int i = 0; i < MAXNUM; i++){
@@ -133,6 +136,20 @@ public class selectCourses extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 if (counter > 0){
+
+                    JSONObject jsonBody = new JSONObject();
+
+                    try {
+                        jsonBody.put("courseIDs", "[1,2,3,4,5]");
+                        jsonBody.put("scheduleSize", "5");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    final String mRequestBody = jsonBody.toString();
+
+                    makeRequest(queue, mRequestBody, "http://10.0.2.2:11770/W19/generate");
+
                     //LINKING CODE GOES HERE
                     startActivity(new Intent(selectCourses.this, ScheduleActivity.class));
                 }
@@ -147,9 +164,6 @@ public class selectCourses extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, myCourses);
         editText.setAdapter(adapter);
-
-        // Instantiate the RequestQueue.
-        final RequestQueue queue = Volley.newRequestQueue(this);
 
         editText.addTextChangedListener(new TextWatcher() {
 
@@ -167,7 +181,7 @@ public class selectCourses extends AppCompatActivity {
 
                 final String mRequestBody = jsonBody.toString();
 
-                makeRequest(queue, mRequestBody);
+                makeRequest(queue, mRequestBody, "http://10.0.2.2:11880/F18/search");
 //                for (int i = 0; i < myCourses.length; i++) {
 //                    System.out.println(myCourses[i]);
 //                }
@@ -205,7 +219,6 @@ public class selectCourses extends AppCompatActivity {
 
     public boolean addToArray(){
         int length1;
-//        int length2;
 
         //Parser created to make sure course matches proper format
         String[] parsedString = editText.getText().toString().split("\\s+");
@@ -213,32 +226,12 @@ public class selectCourses extends AppCompatActivity {
         System.out.println(parsedString[1]);
         if (parsedString.length > 1){
             length1 = parsedString[0].length();
-//            length2 = parsedString[1].length();
             if ((length1 > 2)&&(length1 < 5)&&(parsedString[0].matches("[a-zA-Z]+"))){
-//                (length2 == 4)&&(parsedString[1].matches("[0-9]+"))){
-                //Add string to array, raise counter & return true
                 courses[counter] = editText.getText().toString();
                 counter++;
                 return true;
             }
         }
-/********************************************************************************************/
-        //REMOVE THIS WHEN TESTING IS COMPLETE
-        else if (parsedString[0].equals("Gg")){
-            courses[counter] = ("CIS 2750");
-            counter++;
-            displayText();
-            courses[counter] = ("CIS 3110");
-            counter++;
-            displayText();
-            courses[counter] = ("CIS 3490");
-            counter++;
-            displayText();
-            courses[counter] = ("CIS 3760");
-            counter++;
-            displayText();
-        }
-/********************************************************************************************/
         //Sends message if course info is invalid
         Toast toast = Toast.makeText(getApplicationContext(),
                 "Please provide a proper course code", Toast.LENGTH_SHORT);
@@ -299,9 +292,10 @@ public class selectCourses extends AppCompatActivity {
     }
 
 
-    public void makeRequest(RequestQueue queue, final String mRequestBody) {
+    public void makeRequest(RequestQueue queue, final String mRequestBody, String url) {
 
-        String url = "http://10.0.2.2:11880/F18/search";
+//        String url = "http://10.0.2.2:11880/F18/search";
+//        String url = "http://10.0.2.2:11770/W19/generate";
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -310,6 +304,7 @@ public class selectCourses extends AppCompatActivity {
                     public void onResponse(String response) {
                         //System.out.println("Response is: " + response);
                         printCourses(response);
+                        parseSchedule(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -350,6 +345,23 @@ public class selectCourses extends AppCompatActivity {
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+    }
+
+    public void parseSchedule(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = new JSONArray(jsonObject.get("courses").toString());
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject explrObject = jsonArray.getJSONObject(i);
+                //System.out.println(explrObject);
+                System.out.println(explrObject.get("dept").toString());
+                System.out.println(explrObject.get("code").toString());
+                System.out.println(explrObject.get("sections").toString());
+            }
+            System.out.println(jsonObject.get("schedules").toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 
