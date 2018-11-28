@@ -15,13 +15,39 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.Volley;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.ServerError;
+import com.android.volley.VolleyLog;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 
 import static android.util.Log.ASSERT;
 
 public class selectCourses extends AppCompatActivity {
+    private String[] myCourses = new String[]{};
+    private ArrayAdapter<String> adapter;
+
     //Change this value if the course limit needs to be changed
     private static final int MAXNUM = 6;
-
     private String term = "W19";
 
     //Courses stored in this array
@@ -35,7 +61,7 @@ public class selectCourses extends AppCompatActivity {
     private SeekBar seekBar;
 
     //Add field elements
-    private EditText editText;
+    private AutoCompleteTextView editText;
     private Button addButton;
 
     //Layouts for normal and advanced modes
@@ -63,7 +89,7 @@ public class selectCourses extends AppCompatActivity {
         courseLoadNumText = findViewById(R.id.courseLoadNum);
         seekBar = findViewById(R.id.seekBar);
         seekBar.setMax(4);
-        seekBar.setProgress(2);
+        seekBar.setProgress(3);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean bool) {
@@ -89,16 +115,17 @@ public class selectCourses extends AppCompatActivity {
         //Initialize Add Field Elements
         editText = findViewById(R.id.editText);
         addButton = findViewById(R.id.addButton);
-        addButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v){
-                if (counter < MAXNUM) {     //If the course limit hasn't been reached
-                    if(addToArray()) {      //If the string given is valid
-                        displayText();      //Display courses to both layouts
-                    }
-                    editText.getText().clear(); //Reset add field
-                }
-            }
-        });
+        addButton.setVisibility(View.INVISIBLE);
+//        addButton.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v){
+//                if (counter < MAXNUM) {     //If the course limit hasn't been reached
+//                    if(addToArray()) {      //If the string given is valid
+//                        displayText();      //Display courses to both layouts
+//                    }
+//                    editText.getText().clear(); //Reset add field
+//                }
+//            }
+//        });
 
         //Initialize confirm button
         confirm = findViewById(R.id.confirm);
@@ -115,6 +142,59 @@ public class selectCourses extends AppCompatActivity {
                 }
             }
         });
+
+        adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, myCourses);
+        editText.setAdapter(adapter);
+
+        // Instantiate the RequestQueue.
+        final RequestQueue queue = Volley.newRequestQueue(this);
+
+        editText.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                System.out.println("*******************");
+                JSONObject jsonBody = new JSONObject();
+
+                try {
+                    jsonBody.put("match", editText.getText().toString());
+                    jsonBody.put("limit", courseLoadNumText.getText().toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                final String mRequestBody = jsonBody.toString();
+
+                makeRequest(queue, mRequestBody);
+//                for (int i = 0; i < myCourses.length; i++) {
+//                    System.out.println(myCourses[i]);
+//                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        editText.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View arg1, int pos, long id) {
+//                Toast.makeText(getApplicationContext(), myCourses[pos] + " selected", Toast.LENGTH_LONG).show();
+                if (counter < MAXNUM) {     //If the course limit hasn't been reached
+                    if(addToArray()) {      //If the string given is valid
+                        displayText();      //Display courses to both layouts
+                    }
+                    editText.getText().clear(); //Reset add field
+                }
+            }
+        });
     }
 
     //Controls viewFlipper
@@ -124,18 +204,19 @@ public class selectCourses extends AppCompatActivity {
 
     public boolean addToArray(){
         int length1;
-        int length2;
+//        int length2;
 
         //Parser created to make sure course matches proper format
         String[] parsedString = editText.getText().toString().split("\\s+");
-        if (parsedString.length == 2){
+        System.out.println(parsedString[0]);
+        System.out.println(parsedString[1]);
+        if (parsedString.length > 1){
             length1 = parsedString[0].length();
-            length2 = parsedString[1].length();
-            if ((length1 > 2)&&(length1 < 5)&&(parsedString[0].matches("[a-zA-Z]+"))&&
-                (length2 == 4)&&(parsedString[1].matches("[0-9]+"))){
-
+//            length2 = parsedString[1].length();
+            if ((length1 > 2)&&(length1 < 5)&&(parsedString[0].matches("[a-zA-Z]+"))){
+//                (length2 == 4)&&(parsedString[1].matches("[0-9]+"))){
                 //Add string to array, raise counter & return true
-                courses[counter] = editText.getText().toString().toUpperCase();
+                courses[counter] = editText.getText().toString();
                 counter++;
                 return true;
             }
@@ -175,7 +256,7 @@ public class selectCourses extends AppCompatActivity {
         textViewL.setLayoutParams(layoutParamsL);
         textViewL.setText(courses[counter-1]);
         textViewL.setTextColor(Color.BLACK);
-        textViewL.setTextSize(24);
+        textViewL.setTextSize(18);
         linearLayout.addView(textViewL);
 
         //Add new row to advanced layout
@@ -203,10 +284,97 @@ public class selectCourses extends AppCompatActivity {
         newRow.setLayoutParams(layoutParamsT);
         textViewT.setText(" "+courses[counter-1]);
         textViewT.setTextColor(Color.BLACK);
-        textViewT.setTextSize(24);
+        textViewT.setTextSize(18);
         newRow.addView(textViewT);
         newRow.addView(manSwitch);
         advancedLayout.addView(newRow, counter-1);
         advancedLayout.setColumnStretchable(0, true);
+    }
+
+    String[] addElement(String[] org, String added) {
+        String[] result = Arrays.copyOf(org, org.length +1);
+        result[org.length] = added;
+        return result;
+    }
+
+
+    public void makeRequest(RequestQueue queue, final String mRequestBody) {
+
+        String url = "http://10.0.2.2:11880/F18/search";
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //System.out.println("Response is: " + response);
+                        printCourses(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // As of f605da3 the following should work
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        // Now you can use any deserializer to make sense of data
+                        JSONObject obj = new JSONObject(res);
+                    } catch (UnsupportedEncodingException e1) {
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        // returned data is not JSONObject?
+                        e2.printStackTrace();
+                    }
+                }
+            }
+        }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                try {
+                    return mRequestBody == null ? null : mRequestBody.getBytes("utf-8");
+                } catch (UnsupportedEncodingException uee) {
+                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", mRequestBody, "utf-8");
+                    return null;
+                }
+            }
+        };
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
+
+
+    public void printCourses(String response) {
+        String[] replaceList = new String[]{};
+        myCourses = replaceList;
+        try {
+            JSONArray jsonArray = new JSONArray(response);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject explrObject = jsonArray.getJSONObject(i);
+                //System.out.println(explrObject);
+                String courseLabel = explrObject.get("dept").toString() + " " +
+                        explrObject.get("code").toString() + " " +
+                        explrObject.get("title").toString();
+                myCourses = addElement(myCourses, courseLabel);
+            }
+            for (int i = 0; i < myCourses.length; i++) {
+                System.out.println(myCourses[i]);
+            }
+            //final AutoCompleteTextView editText = findViewById(R.id.actv);
+            adapter.clear();
+            adapter.addAll(myCourses);
+            adapter.notifyDataSetChanged();
+            //editText.setAdapter(adapter);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
