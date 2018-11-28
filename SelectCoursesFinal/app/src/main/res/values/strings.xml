@@ -3,4 +3,10 @@
     <string name="confirm">Confirm</string>
     <string name="advanced">More</string>
     <string name="add">+</string>
+
+    <string name="CourseLoad">Course Load:</string>
+    <string name="CourseLoadNum">5</string>
+    <string name="CourseCode">Course Code</string>
+    <string name="Mandatory">Mandatory</string>
+    <string name="editTextHint">SelectACourse</string>
 </resources>
