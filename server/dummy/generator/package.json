@@ -1,0 +1,18 @@
+{
+  "name": "generate-dummy",
+  "version": "1.0.0",
+  "description": "A dummy schedule generation API for building out the schedules UI.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/xairos/next-class"
+  },
+  "author": "Ben Rottke",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

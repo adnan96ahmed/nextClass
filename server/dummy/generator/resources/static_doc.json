@@ -1,0 +1,148 @@
+{
+  "courses": [
+    {
+      "id": 2578,
+      "title": "Adv Topics in Model & Optim",
+      "dept": "MATH",
+      "code": "4240",
+      "sections": [
+        {
+          "ref": 1,
+          "meetings": [
+            {
+              "days": 10,
+              "type": "LEC",
+              "building": "MCKN",
+              "room": "230",
+              "timeStart": 1000,
+              "timeEnd": 1120
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1944,
+      "title": "Compilers",
+      "dept": "CIS",
+      "code": "4650",
+      "sections": [
+        {
+          "ref": 2,
+          "meetings": [
+            {
+              "days": 21,
+              "type": "LEC",
+              "building": "MCKN",
+              "room": "121",
+              "timeStart": 1330,
+              "timeEnd": 1420
+            },
+            {
+              "days": 16,
+              "type": "LAB",
+              "building": "CRSC",
+              "room": "117",
+              "timeStart": 1130,
+              "timeEnd": 1220              
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2574,
+      "title": "Linear Algebra II",
+      "dept": "MATH",
+      "code": "3160",
+      "sections": [
+        {
+          "ref": 3,
+          "meetings": [
+            {
+              "days": 21,
+              "type": "LEC",
+              "building": "MCKN",
+              "room": "121",
+              "timeStart": 1430,
+              "timeEnd": 1520
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1942,
+      "title": "Special Topics in Info. Sci.",
+      "dept": "CIS",
+      "code": "4450",
+      "sections": [
+        {
+          "ref": 4,
+          "meetings": [
+            {
+              "days": 10,
+              "type": "LEC",
+              "building": "MCKN",
+              "room": "121",
+              "timeStart": 1730,
+              "timeEnd": 1820
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1939,
+      "title": "Intro to Intelligent Systems",
+      "dept": "CIS",
+      "code": "3700",
+      "sections": [
+        {
+          "ref": 5,
+          "meetings": [
+            {
+              "days": 10,
+              "type": "LEC",
+              "building": "MCKN",
+              "room": "224",
+              "timeStart": 1430,
+              "timeEnd": 1550
+            },
+            {
+              "days": 8,
+              "type": "LAB",
+              "building": "ROZH",
+              "room": "105",
+              "timeStart": 1330,
+              "timeEnd": 1420
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "schedules": [
+    [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  ]
+}
