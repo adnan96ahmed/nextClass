@@ -158,8 +158,10 @@ public class selectCourses extends AppCompatActivity {
                 JSONObject jsonBody = new JSONObject();
 
                 try {
-                    jsonBody.put("match", editText.getText().toString());
-                    jsonBody.put("limit", courseLoadNumText.getText().toString());
+//                    jsonBody.put("match", editText.getText().toString());
+//                    jsonBody.put("limit", courseLoadNumText.getText().toString());
+                    jsonBody.put("courseIDs", "[1,2,3,4,5]");
+                    jsonBody.put("scheduleSize", "5");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -300,7 +302,8 @@ public class selectCourses extends AppCompatActivity {
 
     public void makeRequest(RequestQueue queue, final String mRequestBody) {
 
-        String url = "http://10.0.2.2:11880/F18/search";
+//        String url = "http://10.0.2.2:11880/F18/search";
+        String url = "http://10.0.2.2:11770/W19/generate";
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -308,7 +311,8 @@ public class selectCourses extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         //System.out.println("Response is: " + response);
-                        printCourses(response);
+                        //printCourses(response);
+                        parseSchedule(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -349,6 +353,23 @@ public class selectCourses extends AppCompatActivity {
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+    }
+
+    public void parseSchedule(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = new JSONArray(jsonObject.get("courses").toString());
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject explrObject = jsonArray.getJSONObject(i);
+                //System.out.println(explrObject);
+                System.out.println(explrObject.get("dept").toString());
+                System.out.println(explrObject.get("code").toString());
+                System.out.println(explrObject.get("sections").toString());
+            }
+            System.out.println(jsonObject.get("schedules").toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 
