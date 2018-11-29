@@ -3,18 +3,51 @@ services:
   
   postgres:
     build: ./postgres
-    ports:
-      - "15432:5432"
-  
-  redis:
-    image: redis
-    ports:
-      - "6379:6379"
+    restart: always
+    expose:
+      - "5432"
+    networks:
+      - backend
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.5.1
-    ports:
-      - "9200:9200"
-      - "9300:9300"
+    restart: always
+    expose:
+      - "9200"
+      - "9300"
     environment:
       - discovery.type=single-node
+    networks:
+      - backend
+  
+  generator:
+    build: ./dummy/generator
+    restart: always
+    expose:
+      - "11770"
+    networks:
+      - backend
+  
+  autocomplete:
+    build: ./dummy/elasticsearch
+    restart: always
+    expose:
+      - "11880"
+    networks:
+      - backend
+  
+  proxy:
+    build: ./proxy
+    restart: always
+    ports:
+      - "80:80"
+    environment:
+      - "GENERATOR_URL=http://generator:11770"
+      - "AUTOCOMPLETE_URL=http://autocomplete:11880"
+    networks:
+      - frontend
+      - backend
+
+networks:
+  frontend:
+  backend:

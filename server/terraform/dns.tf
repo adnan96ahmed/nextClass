@@ -10,5 +10,5 @@ resource "google_dns_record_set" "app" {
 
   managed_zone = "${google_dns_managed_zone.coursecollider-com.name}"
 
-  rrdatas = ["${google_compute_instance.instance.network_interface.0.access_config.0.nat_ip}"]
+  rrdatas = ["${google_compute_address.tenagra-ip.address}"]
 }

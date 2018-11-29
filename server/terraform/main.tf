@@ -12,13 +12,14 @@ data "google_compute_image" "os" {
 
 resource "google_compute_instance" "instance" {
   name = "tenagra"
-  machine_type = "n1-standard-1"
+  machine_type = "n1-standard-4"
   zone = "${var.zone}"
   tags = ["http-server", "swarm"]
 
   boot_disk {
     initialize_params {
       image = "${data.google_compute_image.os.self_link}"
+      type = "pd-ssd"
     }
   }
 
@@ -26,7 +27,7 @@ resource "google_compute_instance" "instance" {
   network = "default"
 
   access_config {
-    // Ephemeral IP
+      nat_ip = "${google_compute_address.tenagra-ip.address}"
     }
   }
 
@@ -34,6 +35,10 @@ resource "google_compute_instance" "instance" {
     ssh-keys = "root:${file("${var.public_key_path}")}"
     startup-script = "${file("bootstrap.sh")}"
   }
+}
+
+resource "google_compute_address" "tenagra-ip" {
+  name = "tenagra-static-ip"
 }
 
 resource "google_compute_firewall" "http_ingress" {
@@ -50,5 +55,5 @@ resource "google_compute_firewall" "http_ingress" {
 }
 
 output "tenagra-ip" {
-  value = "${google_compute_instance.instance.network_interface.0.access_config.0.nat_ip}"
+  value = "${google_compute_address.tenagra-ip.address}"
 }
