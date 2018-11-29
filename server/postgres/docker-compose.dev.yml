@@ -1,0 +1,27 @@
+version: '3'
+services:
+
+  postgres:
+    build: .
+    depends_on:
+      - elasticsearch
+    ports:
+      - "7777:5432"
+    environment:
+      - "ELASTICSEARCH_URL=elasticsearch:9200"
+      - "ELASTICSEARCH_TIMEOUT=30"
+    networks: 
+      - pg-devel
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.5.1
+    expose:
+      - "9200"
+      - "9300"
+    environment:
+      - discovery.type=single-node
+    networks: 
+      - pg-devel
+
+networks: 
+  pg-devel:
