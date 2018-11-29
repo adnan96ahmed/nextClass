@@ -1,4 +1,6 @@
 -- Schema creation from scratch. current_database() should be 'nextclass'.
+CREATE EXTENSION zombodb;
+
 CREATE USER super;
 CREATE SCHEMA main;
 GRANT ALL PRIVILEGES ON DATABASE nextclass TO super;
@@ -219,3 +221,7 @@ CREATE TABLE section_instructor_map
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
 );
+
+-- ZomboDB / Elasticsearch Indices
+CREATE INDEX idxcourse ON course USING zombodb ((course.*)) WITH (url='http://elasticsearch:9200/');
+CREATE INDEX idxdepartment ON department USING zombodb ((department.*)) WITH (url='http://elasticsearch:9200/');

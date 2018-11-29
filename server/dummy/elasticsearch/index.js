@@ -14,10 +14,15 @@ var options = {
     maxPatternLength: 32,
     minMatchCharLength: 1,
     keys: [
-        "dept",
-        "code",
-        "title"
-  ]
+        {
+            "name": "title",
+            "weight": 0.3
+        },
+        {
+            "name": "concat",
+            "weight": 0.7
+        }
+    ]
 }
 let fuse = new Fuse(data, options)
 
@@ -38,6 +43,15 @@ app.get('/:semester/search', (req, res) => {
     if (limit !== undefined && limit > 0) {
         results = results.slice(0, limit)
     }
+
+    results = results.map(i => {
+        return {
+            id: i.id,
+            title: i.title,
+            dept: i.dept,
+            code: i.code
+        }
+    })
     res.json(results)
 })
 
@@ -56,6 +70,15 @@ app.post('/:semester/search', (req, res) => {
     if (limit !== undefined && limit > 0) {
         results = results.slice(0, limit)
     }
+
+    results = results.map(i => {
+        return {
+            id: i.id,
+            title: i.title,
+            dept: i.dept,
+            code: i.code
+        }
+    })
     res.json(results)
 })
 

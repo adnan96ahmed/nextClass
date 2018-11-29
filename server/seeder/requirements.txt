@@ -1,0 +1,5 @@
+click==7.0
+requests==2.20.1
+SQLAlchemy==1.2.14
+lxml==4.2.5
+psycopg2-binary==2.7.6.1
