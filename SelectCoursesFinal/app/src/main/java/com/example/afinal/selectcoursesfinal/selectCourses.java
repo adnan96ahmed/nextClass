@@ -139,7 +139,7 @@ public class selectCourses extends AppCompatActivity {
 
                     final String mRequestBody = jsonBody.toString();
 
-                    makeRequest(queue, mRequestBody, "http://10.0.2.2:11770/W19/generate");
+                    makeRequest(queue, mRequestBody, "http://app.coursecollider.com/W19/generate");
 
                     //LINKING CODE GOES HERE
                     System.out.println(mySchedule.toString());
@@ -175,7 +175,7 @@ public class selectCourses extends AppCompatActivity {
 
                 final String mRequestBody = jsonBody.toString();
 
-                makeRequest(queue, mRequestBody, "http://10.0.2.2:11880/F18/search");
+                makeRequest(queue, mRequestBody, "http://app.coursecollider.com/W19/search");
 //                for (int i = 0; i < myCourses.length; i++) {
 //                    System.out.println(myCourses[i]);
 //                }
