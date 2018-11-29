@@ -3,4 +3,17 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="course1">#ff3333</color>
+    <color name="course1lab">#ff6666</color>
+
+    <color name="course2">#00bfff</color>
+    <color name="course2lab">#4dd2ff</color>
+
+    <color name="course3">#33ff33</color>
+    <color name="course3lab">#99ff99</color>
+
+    <color name="course4">#ff8c1a</color>
+
+    <color name="course5">#ff66cc</color>
 </resources>

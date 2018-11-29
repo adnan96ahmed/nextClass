@@ -9,4 +9,11 @@
     <string name="CourseCode">Course Code</string>
     <string name="Mandatory">Mandatory</string>
     <string name="editTextHint">SelectACourse</string>
+
+    <string name="Timeslot">Timeslot</string>
+    <string name="Monday">Mon</string>
+    <string name="Tuesday">Tue</string>
+    <string name="Wednesday">Wed</string>
+    <string name="Thursday">Thur</string>
+    <string name="Friday">Fri</string>
 </resources>
