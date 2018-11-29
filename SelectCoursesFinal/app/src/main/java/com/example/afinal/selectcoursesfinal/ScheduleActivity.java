@@ -20,8 +20,5 @@ public class ScheduleActivity extends AppCompatActivity {
         String message = intent.getStringExtra("courseInfo");
 
         System.out.println(message);
-        Toast toast = Toast.makeText(getApplicationContext(),
-                message, Toast.LENGTH_SHORT);
-        toast.show();
     }
 }
