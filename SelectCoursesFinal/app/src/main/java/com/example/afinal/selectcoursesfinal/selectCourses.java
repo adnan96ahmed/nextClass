@@ -142,10 +142,10 @@ public class selectCourses extends AppCompatActivity {
                     makeRequest(queue, mRequestBody, "http://10.0.2.2:11770/W19/generate");
 
                     //LINKING CODE GOES HERE
-//                    System.out.println(mySchedule.toString());
-//                    Intent intent = new Intent(selectCourses.this, ScheduleActivity.class);
-//                    intent.putExtra("courseInfo", mySchedule.toString());
-//                    startActivity(intent);
+                    System.out.println(mySchedule.toString());
+                    Intent intent = new Intent(selectCourses.this, ScheduleActivity.class);
+                    intent.putExtra("courseInfo", mySchedule.toString());
+                    startActivity(intent);
                 }
                 else{   //Give warning if no course is added
                     Toast toast = Toast.makeText(getApplicationContext(),
