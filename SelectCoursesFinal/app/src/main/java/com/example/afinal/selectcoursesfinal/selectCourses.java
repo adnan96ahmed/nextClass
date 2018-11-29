@@ -45,6 +45,7 @@ import static android.util.Log.ASSERT;
 
 public class selectCourses extends AppCompatActivity {
     private String[] myCourses = new String[]{};
+    private JSONObject mySchedule = new JSONObject();
     private ArrayAdapter<String> adapter;
 
     //Change this value if the course limit needs to be changed
@@ -120,16 +121,6 @@ public class selectCourses extends AppCompatActivity {
         editText = findViewById(R.id.editText);
         addButton = findViewById(R.id.addButton);
         addButton.setVisibility(View.INVISIBLE);
-//        addButton.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v){
-//                if (counter < MAXNUM) {     //If the course limit hasn't been reached
-//                    if(addToArray()) {      //If the string given is valid
-//                        displayText();      //Display courses to both layouts
-//                    }
-//                    editText.getText().clear(); //Reset add field
-//                }
-//            }
-//        });
 
         //Initialize confirm button
         confirm = findViewById(R.id.confirm);
@@ -151,7 +142,10 @@ public class selectCourses extends AppCompatActivity {
                     makeRequest(queue, mRequestBody, "http://10.0.2.2:11770/W19/generate");
 
                     //LINKING CODE GOES HERE
-                    startActivity(new Intent(selectCourses.this, ScheduleActivity.class));
+//                    System.out.println(mySchedule.toString());
+//                    Intent intent = new Intent(selectCourses.this, ScheduleActivity.class);
+//                    intent.putExtra("courseInfo", mySchedule.toString());
+//                    startActivity(intent);
                 }
                 else{   //Give warning if no course is added
                     Toast toast = Toast.makeText(getApplicationContext(),
@@ -351,14 +345,28 @@ public class selectCourses extends AppCompatActivity {
         try {
             JSONObject jsonObject = new JSONObject(response);
             JSONArray jsonArray = new JSONArray(jsonObject.get("courses").toString());
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject explrObject = jsonArray.getJSONObject(i);
-                //System.out.println(explrObject);
-                System.out.println(explrObject.get("dept").toString());
-                System.out.println(explrObject.get("code").toString());
-                System.out.println(explrObject.get("sections").toString());
+//            for (int i = 0; i < jsonArray.length(); i++) {
+//                JSONObject explrObject = jsonArray.getJSONObject(i);
+//                //System.out.println(explrObject);
+//                System.out.println(explrObject.get("dept").toString());
+//                System.out.println(explrObject.get("code").toString());
+//                System.out.println(explrObject.get("sections").toString());
+//            }
+
+            JSONObject passingInfo = jsonArray.getJSONObject(0);
+            try {
+                mySchedule.put("dept", passingInfo.get("dept").toString());
+                mySchedule.put("code", passingInfo.get("code").toString());
+                mySchedule.put("sections", passingInfo.get("sections").toString());
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
-            System.out.println(jsonObject.get("schedules").toString());
+            Intent intent = new Intent(selectCourses.this, ScheduleActivity.class);
+            intent.putExtra("courseInfo", mySchedule.toString().replace("\\", ""));
+            startActivity(intent);
+            //System.out.println(jsonObject.get("schedules").toString());
+            //System.out.println(mySchedule.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
